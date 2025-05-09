@@ -8,7 +8,7 @@ import NewsletterSignup from '@/components/NewsletterSignup';
 import Footer from '@/components/Footer';
 
 const Index: React.FC = () => {
-  // Sample product data
+  // Updated product data with more products
   const newArrivalsProducts = [
     {
       id: '1',
@@ -25,17 +25,31 @@ const Index: React.FC = () => {
       isNew: true,
     },
     {
-      id: '3',
-      name: 'Bucket DropZone Preto',
-      price: 89.90,
-      imageUrl: 'https://images.unsplash.com/photo-1576871337622-98d48d1cf531?auto=format&fit=crop&w=800&q=80',
-      badge: 'NEW',
+      id: '11',
+      name: 'Moletom DropZone Cropped Feminino',
+      price: 189.90,
+      imageUrl: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80',
+      isNew: true,
     },
     {
-      id: '4',
-      name: 'Camiseta Sketch DropZone',
-      price: 119.90,
-      imageUrl: 'https://images.unsplash.com/photo-1554568218-0f1715e72254?auto=format&fit=crop&w=800&q=80',
+      id: '9',
+      name: 'Camiseta DropZone Oversized "Urban Vibes"',
+      price: 129.90,
+      imageUrl: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=800&q=80',
+      isNew: true,
+    },
+    {
+      id: '14',
+      name: 'Jaqueta Corta-Vento DropZone',
+      price: 299.90,
+      imageUrl: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=800&q=80',
+      isNew: true,
+    },
+    {
+      id: '17',
+      name: 'Camiseta DropZone Tie-Dye',
+      price: 139.90,
+      imageUrl: 'https://images.unsplash.com/photo-1529374814797-1dfbcfe2e9a3?auto=format&fit=crop&w=800&q=80',
       isNew: true,
     },
   ];
@@ -49,6 +63,20 @@ const Index: React.FC = () => {
       isLowStock: true,
     },
     {
+      id: '13',
+      name: 'Camiseta DropZone "Minimal Logo"',
+      price: 109.90,
+      imageUrl: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80',
+      badge: 'BEST SELLER',
+    },
+    {
+      id: '16',
+      name: 'Calça Moletom DropZone Comfort',
+      price: 189.90,
+      imageUrl: 'https://images.unsplash.com/photo-1548883354-7622d03aca27?auto=format&fit=crop&w=800&q=80',
+      badge: 'BEST SELLER',
+    },
+    {
       id: '6',
       name: 'Camiseta Manga Longa DropZone',
       price: 149.90,
@@ -56,16 +84,17 @@ const Index: React.FC = () => {
       badge: 'BEST SELLER',
     },
     {
-      id: '7',
-      name: 'Moletom DropZone Basic',
-      price: 199.90,
-      imageUrl: 'https://images.unsplash.com/photo-1578681994506-b8f463449011?auto=format&fit=crop&w=800&q=80',
-    },
-    {
       id: '8',
       name: 'Boné DropZone',
       price: 79.90,
       imageUrl: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=800&q=80',
+      badge: 'BEST SELLER',
+    },
+    {
+      id: '18',
+      name: 'Shoulder Bag DropZone',
+      price: 119.90,
+      imageUrl: 'https://images.unsplash.com/photo-1622560480654-d96214fdc887?auto=format&fit=crop&w=800&q=80',
       badge: 'BEST SELLER',
     },
   ];

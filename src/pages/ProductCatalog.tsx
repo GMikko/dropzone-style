@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -43,6 +44,9 @@ const ProductCatalog: React.FC = () => {
         { id: 'gray', label: 'Cinza' },
         { id: 'blue', label: 'Azul' },
         { id: 'beige', label: 'Bege' },
+        { id: 'green', label: 'Verde' },
+        { id: 'red', label: 'Vermelho' },
+        { id: 'purple', label: 'Roxo' },
       ]
     },
     {
@@ -57,8 +61,9 @@ const ProductCatalog: React.FC = () => {
     },
   ];
 
-  // Example products
+  // Expanded products array with 20 items total
   const allProducts = [
+    // Original products
     {
       id: '1',
       name: 'Camiseta Chaos DropZone',
@@ -137,6 +142,125 @@ const ProductCatalog: React.FC = () => {
       categories: ['acessorios', 'best-sellers'],
       colors: ['blue'],
       sizes: ['unique'],
+    },
+    
+    // New products
+    {
+      id: '9',
+      name: 'Camiseta DropZone Oversized "Urban Vibes"',
+      price: 129.90,
+      imageUrl: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=800&q=80',
+      isNew: true,
+      categories: ['camisetas', 'new'],
+      colors: ['black', 'white'],
+      sizes: ['m', 'g', 'gg', 'xgg'],
+    },
+    {
+      id: '10',
+      name: 'Calça Cargo DropZone Tech Wear',
+      price: 279.90,
+      imageUrl: 'https://images.unsplash.com/photo-1509551388413-e18d0ac5d495?auto=format&fit=crop&w=800&q=80',
+      badge: 'NEW',
+      categories: ['calcas', 'new'],
+      colors: ['black', 'beige'],
+      sizes: ['p', 'm', 'g', 'gg'],
+    },
+    {
+      id: '11',
+      name: 'Moletom DropZone Cropped Feminino',
+      price: 189.90,
+      imageUrl: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80',
+      isNew: true,
+      categories: ['moletons', 'new'],
+      colors: ['white', 'gray', 'purple'],
+      sizes: ['p', 'm', 'g'],
+    },
+    {
+      id: '12',
+      name: 'Boné DropZone Estampado',
+      price: 89.90,
+      imageUrl: 'https://images.unsplash.com/photo-1534215754734-18e55d13e346?auto=format&fit=crop&w=800&q=80',
+      categories: ['acessorios'],
+      colors: ['black', 'red'],
+      sizes: ['unique'],
+    },
+    {
+      id: '13',
+      name: 'Camiseta DropZone "Minimal Logo"',
+      price: 109.90,
+      imageUrl: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80',
+      categories: ['camisetas', 'best-sellers'],
+      colors: ['white', 'black'],
+      sizes: ['p', 'm', 'g', 'gg'],
+      badge: 'BEST SELLER',
+    },
+    {
+      id: '14',
+      name: 'Jaqueta Corta-Vento DropZone',
+      price: 299.90,
+      imageUrl: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=800&q=80',
+      isNew: true,
+      categories: ['moletons', 'new'],
+      colors: ['black', 'green'],
+      sizes: ['m', 'g', 'gg'],
+    },
+    {
+      id: '15',
+      name: 'Meia DropZone Pack com 3',
+      price: 59.90,
+      imageUrl: 'https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?auto=format&fit=crop&w=800&q=80',
+      categories: ['acessorios'],
+      colors: ['black', 'white', 'gray'],
+      sizes: ['unique'],
+    },
+    {
+      id: '16',
+      name: 'Calça Moletom DropZone Comfort',
+      price: 189.90,
+      imageUrl: 'https://images.unsplash.com/photo-1548883354-7622d03aca27?auto=format&fit=crop&w=800&q=80',
+      categories: ['calcas', 'best-sellers'],
+      colors: ['gray', 'black'],
+      sizes: ['p', 'm', 'g', 'gg', 'xgg'],
+      badge: 'BEST SELLER',
+    },
+    {
+      id: '17',
+      name: 'Camiseta DropZone Tie-Dye',
+      price: 139.90,
+      imageUrl: 'https://images.unsplash.com/photo-1529374814797-1dfbcfe2e9a3?auto=format&fit=crop&w=800&q=80',
+      isNew: true,
+      categories: ['camisetas', 'new'],
+      colors: ['purple', 'blue'],
+      sizes: ['p', 'm', 'g', 'gg'],
+      isLowStock: true,
+    },
+    {
+      id: '18',
+      name: 'Shoulder Bag DropZone',
+      price: 119.90,
+      imageUrl: 'https://images.unsplash.com/photo-1622560480654-d96214fdc887?auto=format&fit=crop&w=800&q=80',
+      categories: ['acessorios', 'best-sellers'],
+      colors: ['black'],
+      sizes: ['unique'],
+    },
+    {
+      id: '19',
+      name: 'Moletom DropZone Hoodie Colorblock',
+      price: 259.90,
+      imageUrl: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=800&q=80',
+      isNew: true,
+      categories: ['moletons', 'new'],
+      colors: ['black', 'red', 'gray'],
+      sizes: ['m', 'g', 'gg', 'xgg'],
+    },
+    {
+      id: '20',
+      name: 'Bermuda Cargo DropZone',
+      price: 159.90,
+      imageUrl: 'https://images.unsplash.com/photo-1593030103066-0093718efeb9?auto=format&fit=crop&w=800&q=80',
+      categories: ['calcas'],
+      colors: ['beige', 'black'],
+      sizes: ['p', 'm', 'g', 'gg'],
     },
   ];
 
