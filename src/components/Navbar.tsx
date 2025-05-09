@@ -3,10 +3,13 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, ShoppingCart, User, Menu, X } from 'lucide-react';
 import { Button } from './ui/button';
+import { useAuth } from '@/hooks/useAuth';
+import { useCart } from '@/hooks/useCart';
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
+  const { isAuthenticated, logout } = useAuth();
+  const { itemCount } = useCart();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -61,15 +64,26 @@ const Navbar: React.FC = () => {
               <Search size={20} />
             </button>
             
-            <Link to="/account" className="hidden md:block" aria-label="My Account">
-              <User size={20} />
-            </Link>
+            {isAuthenticated ? (
+              <div className="hidden md:flex items-center gap-4">
+                <Link to="/account" aria-label="My Account">
+                  <User size={20} />
+                </Link>
+                <Button variant="ghost" onClick={logout} className="text-sm">
+                  Sair
+                </Button>
+              </div>
+            ) : (
+              <Link to="/login" className="hidden md:block text-sm hover:text-dropzone-accent">
+                Login
+              </Link>
+            )}
             
             <Link to="/cart" className="relative" aria-label="Shopping Cart">
               <ShoppingCart size={20} />
-              {cartCount > 0 && (
+              {itemCount > 0 && (
                 <span className="absolute -top-1 -right-1 bg-dropzone-accent text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">
-                  {cartCount}
+                  {itemCount}
                 </span>
               )}
             </Link>
@@ -98,14 +112,36 @@ const Navbar: React.FC = () => {
                   {category.name}
                 </Link>
               ))}
-              <Link 
-                to="/account" 
-                className="text-base font-medium py-1 flex items-center"
-                onClick={toggleMenu}
-              >
-                <User size={18} className="mr-2" />
-                Minha Conta
-              </Link>
+              
+              {isAuthenticated ? (
+                <>
+                  <Link 
+                    to="/account" 
+                    className="text-base font-medium py-1 flex items-center"
+                    onClick={toggleMenu}
+                  >
+                    <User size={18} className="mr-2" />
+                    Minha Conta
+                  </Link>
+                  <button 
+                    className="text-base font-medium py-1 text-left"
+                    onClick={() => {
+                      logout();
+                      toggleMenu();
+                    }}
+                  >
+                    Sair
+                  </button>
+                </>
+              ) : (
+                <Link 
+                  to="/login" 
+                  className="text-base font-medium py-1"
+                  onClick={toggleMenu}
+                >
+                  Login / Cadastro
+                </Link>
+              )}
             </div>
           </div>
         )}

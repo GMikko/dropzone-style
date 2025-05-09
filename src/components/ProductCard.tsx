@@ -2,6 +2,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
+import { useCart } from '@/hooks/useCart';
+import { useToast } from '@/hooks/use-toast';
 
 interface ProductCardProps {
   id: string;
@@ -24,6 +26,21 @@ const ProductCard: React.FC<ProductCardProps> = ({
   isLowStock,
   className
 }) => {
+  const { addToCart } = useCart();
+  const { toast } = useToast();
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();  // Prevent navigation
+    e.stopPropagation(); // Stop event bubbling
+    
+    addToCart({ id, name, price, imageUrl }, 1);
+    
+    toast({
+      title: "Produto adicionado!",
+      description: `${name} foi adicionado ao seu carrinho.`,
+    });
+  };
+
   return (
     <Link to={`/product/${id}`}>
       <div className={cn("product-card group", className)}>
@@ -46,7 +63,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
           )}
           
           {/* Quick Add Button (shows on hover) */}
-          <div className="absolute bottom-0 left-0 right-0 bg-dropzone-black bg-opacity-80 text-white py-3 flex justify-center translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+          <div 
+            className="absolute bottom-0 left-0 right-0 bg-dropzone-black bg-opacity-80 text-white py-3 flex justify-center translate-y-full group-hover:translate-y-0 transition-transform duration-300 cursor-pointer"
+            onClick={handleAddToCart}
+          >
             <span className="text-sm font-medium">ADICIONAR</span>
           </div>
         </div>

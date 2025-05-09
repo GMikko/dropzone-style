@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -12,6 +12,7 @@ import { allProducts, filterOptions } from '@/data/productData';
 
 const ProductCatalog: React.FC = () => {
   const { category } = useParams<{ category: string }>();
+  const [sortOrder, setSortOrder] = useState<string>('latest');
   
   const { 
     loading, 
@@ -22,6 +23,30 @@ const ProductCatalog: React.FC = () => {
   } = useProductFilters({
     products: allProducts,
     category
+  });
+  
+  const handleSortChange = (newSortOrder: string) => {
+    setSortOrder(newSortOrder);
+  };
+  
+  // Apply sorting to filtered products
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    switch (sortOrder) {
+      case 'price-low':
+        return a.price - b.price;
+      case 'price-high':
+        return b.price - a.price;
+      case 'name-asc':
+        return a.name.localeCompare(b.name);
+      case 'name-desc':
+        return b.name.localeCompare(a.name);
+      case 'latest':
+      default:
+        // For "latest", assuming new items are marked with isNew
+        if (a.isNew && !b.isNew) return -1;
+        if (!a.isNew && b.isNew) return 1;
+        return 0;
+    }
   });
 
   return (
@@ -46,8 +71,12 @@ const ProductCatalog: React.FC = () => {
               
               {/* Product Grid */}
               <div className="md:col-span-3 lg:col-span-4">
-                <ProductSort productCount={filteredProducts.length} />
-                <ProductGrid products={filteredProducts} loading={loading} />
+                <ProductSort 
+                  productCount={sortedProducts.length} 
+                  sortOrder={sortOrder}
+                  onSortChange={handleSortChange}
+                />
+                <ProductGrid products={sortedProducts} loading={loading} />
               </div>
             </div>
           </div>
